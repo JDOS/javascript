@@ -1,3 +1,5 @@
+import { fstat } from "fs";
+
 export function countWords(text){
     const paragraphs = extractParagraph(text);
     const cont = paragraphs
@@ -5,8 +7,10 @@ export function countWords(text){
         if(!paragraph) return [];
         return contadorPalavras(paragraph);
     })
-    console.log(cont);
+    //console.log(cont);
+    return cont;
 }
+
 
 function extractParagraph(text){
     return text.toLowerCase().split('\n');
