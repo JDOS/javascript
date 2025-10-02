@@ -1,27 +1,17 @@
-const fs = require('fs');
-
-const pathFile = process.argv;
-const link = pathFile[2];
-
-fs.readFile(link,'utf-8', (erro, texto) => {
-    console.log(texto);
-    splitParagraph(texto);
-    //contadorPalavras(texto);
-
-})
-
-function splitParagraph(texto){
-    const paragraphs = texto.toLowerCase().split('\n');
-
+export function countWords(text){
+    const paragraphs = extractParagraph(text);
     const cont = paragraphs
     .flatMap((paragraph) => {
         if(!paragraph) return [];
         return contadorPalavras(paragraph);
     })
-
-
     console.log(cont);
 }
+
+function extractParagraph(text){
+    return text.toLowerCase().split('\n');
+}
+
 
 function cleanWords(word){
     return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
@@ -40,3 +30,4 @@ function contadorPalavras(texto){
     })
     return result;
 }
+
