@@ -4,6 +4,7 @@ import trataErros from './erros/functionErros.js';
 import { countWords } from './index.js';
 import { montaSaidaArquivo } from './helpers.js';
 import { Command } from 'commander';
+import chalk from 'chalk';
 
 const program = new Command();
 
@@ -14,7 +15,7 @@ program
     .action((options) => {
         const { texto, destino } = options;
         if(!texto || !destino){
-            console.error('erro: favor inserir caminho de origem e destino')
+            console.error(chalk.red('ERRO: favor inserir caminho de origem e destino'))
             program.help();
             return;
         }
@@ -24,7 +25,7 @@ program
 
         try {  
             processaArquivo(caminhoTexto, caminhoDestino);
-            console.log("texto processado com sucesso!");
+            console.log(chalk.green("Texto processado com sucesso!"));
         } catch (erro){
             console.log('Ocorreu um erro no processamento',erro);
         }
